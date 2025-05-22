@@ -1,1 +1,9 @@
-@import 'tailwindcss'
+@import 'tailwindcss';
+
+body{
+    background-image: url('https://png.pngtree.com/background/20250103/original/pngtree-flat-lay-top-view-office-table-desk-picture-image_15444834.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
