@@ -1,10 +1,14 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import '@/App.css'
-import Tracker from '@/components/Tracker.jsx'
+import TrackingPage from '@/pages/TrackingPage.jsx'
 
 export default function App() {
   return (
-    <div className='p-20'>
-      <Tracker/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<TrackingPage/>}></Route>
+      </Routes>
+    </BrowserRouter>
+    
   ) 
 }
