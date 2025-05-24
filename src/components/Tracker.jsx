@@ -1,5 +1,5 @@
 import style from '@/css/Tracker.module.css'
-import {Add, Delete} from '@mui/icons-material'
+import {Add, Delete, Close} from '@mui/icons-material'
 import {
   Table,
   TableBody,
@@ -25,6 +25,7 @@ export default function Tracker(){
         })
         return acc;
     },[entry])
+    const [payModal , setPayModal] = useState(false)
 
     const addRow = () =>{
 
@@ -36,7 +37,7 @@ export default function Tracker(){
     }
 
     const showModal = () =>{
-
+        setPayModal(prev=>!prev)
     }
 
 
@@ -103,7 +104,7 @@ export default function Tracker(){
 
     return(
         <div className='flex flex-col gap-2'>
-            <TableContainer component={Paper}>
+            <TableContainer sx={{maxWidth: '100%', overflowX:'auto'}} component={Paper}>
                <Table>
                     <TableHead>
                         <TableRow>
@@ -136,7 +137,7 @@ export default function Tracker(){
                                       onBlur={()=>insertOrUpdate()} className={style.input} value={item.notes} />
                                 </TableCell>
                                 <TableCell align="center">
-                                    <Delete onClick={()=>deleteRow(index)} color='error'/>
+                                    <IconButton><Delete onClick={()=>deleteRow(index)} color='error'/></IconButton> 
                                 </TableCell>
                             </TableRow>
                         ))
@@ -160,10 +161,24 @@ export default function Tracker(){
             
             </TableContainer>
 
-            <div className='bg-white p-10 fixed top-14'>
-                <img src="/gcash-qr.jpg" className='w-1/3' alt="" />
-                <span>Or send the money to me </span>
-            </div>
+            {payModal && <div className='flex flex-col items-center justify-center bg-[#007DFE] p-10 fixed top-1/2  left-1/2 
+            -translate-x-1/2 -translate-y-1/2 w-1/3 h-2/3 rounded-xl 
+            max-lg:w-2/3 max-sm:w-9/10 max-sm:h-1/2'>
+                    <div className='absolute top-0 right-1'>
+                        <IconButton><Close sx={{color: 'white'}} onClick={showModal}></Close></IconButton>
+                    </div>
+                    <img src="/gcash-banner.jpg" className='w-1/2 -mt-20' alt="" />
+                <div className=' bg-white flex flex-col gap-1 items-center w-1/2 rounded-xl p-5 max-sm:w-8/10'>
+                    
+                    <img src="/gcash-qr.jpg" className='rounded-t-xl' alt="" />
+                    <span className='font-mono leading-tight text-[#007DFE] font-bold'>IS***H MI***L F.</span>
+                    <span className='text-gray-500'>09*****3956</span>
+                </div>
+                <div>
+                    
+                </div>
+                
+            </div>}
             
             
             
